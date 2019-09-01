@@ -1,25 +1,27 @@
-    
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-# 利用递归函数计算阶乘
-# N! = 1 * 2 * 3 * ... * N
-def fact(n):
-    if n == 1:
-        return 1
-    return n * fact(n-1)
-
-print('fact(1) =', fact(1))
-print('fact(5) =', fact(5))
-print('fact(10) =', fact(10))
-
-# 利用递归函数移动汉诺塔:
-def move(n, a, b, c):
-    if n == 1:
-        print('move', a, '-->', c)
+def findMinAndMax(L):
+    if len(L)==0:
+        return (None, None)
     else:
-        move(n-1, a, c, b)
-        move(1, a, b, c)
-        move(n-1, b, a, c)
+        max=L[(0)]
+        min=L[(0)]
+        for i in L:
+            if i>max:
+                max=i
+        for i in L:
+            if i<min:
+                min=i
+        return(min,max)
+       
 
-move(4, 'A', 'B', 'C')
+#测试
+if findMinAndMax([]) != (None, None):
+    print('测试失败!')
+elif findMinAndMax([7]) != (7, 7):
+    print('测试失败!')
+elif findMinAndMax([7, 1]) != (1, 7):
+    print('测试失败!')
+elif findMinAndMax([7, 1, 3, 9, 5]) != (1, 9):
+    print('测试失败!')
+else:
+    print('测试成功!')
